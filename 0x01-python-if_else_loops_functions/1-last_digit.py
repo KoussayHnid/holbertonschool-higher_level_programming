@@ -2,8 +2,7 @@
 import random
 number = random.randint(-10000, 10000)
 degit=abs(number)
-while degit>=10:
-    degit=degit%10
+degit=degit%10
 if number<0:
     degit=degit*(-1)
 if degit > 5:
