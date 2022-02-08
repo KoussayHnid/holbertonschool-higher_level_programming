@@ -1,3 +1,9 @@
 #!/usr/bin/python3
-class square:
+'''
+Write an empty class Square that defines a square
+'''
+class Square:
+    '''
+    You are not allowed to import any module
+    '''
     pass
