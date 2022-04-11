@@ -1,45 +1,61 @@
 #!/usr/bin/python3
-'''class Rectangle that defines a rectangle by: (based on 0-rectangle.py)'''
+"""
+Rectangle module
+"""
 
 
 class Rectangle:
-    '''
-    You are not allowed to import any module
-    '''
+    """
+    class that defines Rectangle
+    Args:
+        width(int): width of the rectangle
+        height(int): height of the rectangle
+    Raises:
+        TypeError: when width/height not int type
+        ValueError: when width/height less than 0
+    """
 
     def __init__(self, width=0, height=0):
-        '''
-        Instantiation with optional
-        '''
-         self.width = width
+        """
+            Init method to construct a rectangle
+            """
         self.height = height
+        self.width = width
 
-        @property
+    @property
     def width(self):
-        '''
-        to retrieve it
-        '''
-         return self.__width
+        """
+        width getter
+        """
+        return (self.__width)
 
-     @width.setter
+    @width.setter
     def width(self, value):
+        """
+        width setter
+        """
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value < 0:
             raise ValueError("width must be >= 0")
-        self.__width = value
+        else:
+            self.__width = value
 
-         @property
+    @property
     def height(self):
-        '''
-        Private instance attribute
-        '''
-         return self.__heigh
+        """
+        height getter attribute
+        """
+        return (self.__height)
 
-     @height.setter
+    @height.setter
     def height(self, value):
+        """
+        height setter attribute
+        """
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
         if value < 0:
             raise ValueError("height must be >= 0")
-        self.__height = value
+        else:
+            self.__height = value
