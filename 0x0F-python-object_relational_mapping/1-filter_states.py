@@ -20,7 +20,7 @@ if __name__ == "__main__":
     sql = "SELECT * FROM states WHERE Name LIKE BINARY 'N%' ORDER BY id"
     cursor.execute(sql)
     results = cursor.fetchall()
-    if row in results:
+    for row in results:
         print(row)
     cursor.close()
     db.close()
