@@ -20,5 +20,5 @@ if __name__ == "__main__":
     results=cursor.fetchall()
     for row in results:
         print(row)
-cursor.close()
-db.close()
+    cursor.close()
+    db.close()
