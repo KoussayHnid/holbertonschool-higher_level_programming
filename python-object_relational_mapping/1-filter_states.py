@@ -1,26 +1,24 @@
 #!/usr/bin/python3
-'''
-script that list all states from database
-'''
+"""Module that lists all states with a name starting with N"""
 
 import MySQLdb
-from sys import argv
+import sys
+
 
 if __name__ == "__main__":
+    connection = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2],
+                                 db=sys.argv[3])
+    """Connecting to the MySQL server"""
 
-    db = MySQLdb.connect(
-            host="localhost",
-            port=3306,
-            user=argv[1],
-            password=argv[2],
-            database=argv[3],
+    cursor = connection.cursor()
+    """Creating a cursor object to execute queries"""
 
-        )
-    cursor = db.cursor()
-    sql = "SELECT * FROM states WHERE Name LIKE BINARY 'N%' ORDER BY id"
-    cursor.execute(sql)
-    results = cursor.fetchall()
-    for row in results:
-        print(row)
+    cursor.execute("SELECT * FROM states ORDER BY id ASC")
+    """Executing the SELECT query to retrieve all states"""
+
+    [print(state) for state in cursor.fetchall() if state[1][0] == "N"]
+    """Display the results"""
+
     cursor.close()
-    db.close()
+    connection.close()
+    """Closing the cursor and the connection"""

@@ -13,17 +13,11 @@ if __name__ == "__main__":
     cursor = connection.cursor()
     """Creating a cursor object to execute queries"""
 
-    cursor.execute("SELECT * FROM states "
-                   "WHERE name='{}' ORDER BY states.id ASC".format(argv[4]))
+    cursor.execute("SELECT * FROM states")
     """Executing the SELECT query to retrieve all states"""
 
-    lines = cursor.fetchall()
-    """Fetching all the lines returned by the query"""
-
-    for line in lines:
-        """Display the results"""
-        if line[1] == argv[4]:
-            print(line)
+    [print(state) for state in cursor.fetchall() if state[1] == argv[4]]
+    """Display the results"""
 
     cursor.close()
     connection.close()

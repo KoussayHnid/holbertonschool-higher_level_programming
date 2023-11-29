@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module that takes in an argument and displays all values in the states"""
+"""Module that lists cities states from the database"""
 
 import MySQLdb
 from sys import argv
@@ -13,17 +13,19 @@ if __name__ == "__main__":
     cursor = connection.cursor()
     """Creating a cursor object to execute queries"""
 
-    cursor.execute("SELECT * FROM states "
-                   "WHERE name='{}' ORDER BY states.id ASC".format(argv[4]))
-    """Executing the SELECT query to retrieve all states"""
+    cursor.execute("SELECT cities.id, cities.name, states.name "
+                   "FROM cities "
+                   "JOIN states "
+                   "ON cities.state_id=states.id "
+                   "ORDER BY cities.id ASC")
+    """Executing the SELECT query to retrieve all cities"""
 
     lines = cursor.fetchall()
     """Fetching all the lines returned by the query"""
 
     for line in lines:
         """Display the results"""
-        if line[1] == argv[4]:
-            print(line)
+        print(line)
 
     cursor.close()
     connection.close()
